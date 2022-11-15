@@ -1,6 +1,6 @@
 //資料庫設定
 const mongoose = require('mongoose') //載入Mongoose
-const Restaurant = require('./models/restaurant')//載入restaurant model
+const RestaurantModel = require('./models/restaurant')//載入restaurant model
 //非正式環境下使用dotenv
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -22,12 +22,30 @@ app.engine('hbs', engine({ defaultLayout: "main", extname: '.hbs' }))
 app.set('view engine', 'hbs')
 app.use(express.static('public'))//使用靜態檔案
 
+//body-parser設定
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+
+
 app.get('/', (req, res) => {
-  Restaurant.find() //取出資料庫中資料
+  RestaurantModel.find() //取出資料庫中資料
     .lean()
     .then(restaurants => res.render('index', { restaurants })) //將相關資料傳給index樣板
     .catch(error => console.log(error))
 })
+//新增餐廳功能
+app.get('/restaurant/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurant', (req, res) => {
+  const SaveRestaurant = new RestaurantModel(req.body)
+  return SaveRestaurant.save((error, savedRestaurant) => {
+    if (error) throw error
+    res.redirect('/')
+  })
+})
+
 
 
 app.listen(3000, () => {

@@ -141,3 +141,20 @@ body {
 .card-footer-link {
   margin-left: 10px;
 }
+
+.new-restaurant-container {
+  outline: 2px solid green;
+  display: flex;
+  justify-content: center;
+}
+
+.new-restaurant-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.new-form {
+  margin-top: 30px;
+  display: inline-block;
+}

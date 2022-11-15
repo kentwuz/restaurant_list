@@ -1,0 +1,57 @@
+<div class="new-restaurant-container">
+  <div class="col-sm-6 new-form">
+    <div>
+      <h2 class="title">請填入餐廳相關資料</h2>
+    </div>
+    <div class=" col-sm-12 mt-2">
+      <form class="row g-3" action="/restaurant" method="post">
+        <div class="col-md-6">
+          <label for="name" class="form-label">餐廳中文名稱</label>
+          <input type="text" class="form-control" name="name" id="name" placeholder="頂太瘋水餃店" required>
+        </div>
+        <div class="col-md-6">
+          <label for="name_en" class="form-label">餐廳英文名稱</label>
+          <input type="text" class="form-control" name="name_en" id="name_en" placeholder="top crazy dumpling" required>
+        </div>
+        <div class="col-md-6">
+          <label for="category" class="form-label">餐廳分類</label>
+          <input type="text" class="form-control" name="category" id="category" placeholder="中式料理" required>
+        </div>
+        <div class="col-md-6">
+          <label for="image" class="form-label">圖片連結</label>
+          <input type="text" class="form-control" name="image" id="image"
+            placeholder="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5634/08.jpg" required>
+        </div>
+        <div class="col-12">
+          <label for="location" class="form-label">餐廳地址</label>
+          <input type="text" class="form-control" name="location" id="location" placeholder="1234 Main St" required>
+        </div>
+        <div class="col-12">
+          <label for="phone" class="form-label">聯絡電話:</label>
+          <input type="text" class="form-control" name="phone" id="phone" placeholder="02 2555 8888" required>
+        </div>
+        <div class="col-md-9">
+          <label for="google_map" class="form-label">Google地圖</label>
+          <input type="text" class="form-control" name="google_map" id="google_map"
+            placeholder="https://goo.gl/maps/V9mKwVJ4s5v" required>
+        </div>
+        <div class="col-md-3">
+          <label for="rating" class="form-label">整體評分</label>
+          <input type="number" class="form-control" name="rating" step="0.1" id="rating" placeholder="4.5" min="0"
+            max="5" required>
+        </div>
+        <div class="col-12">
+        </div>
+        <div class="col-12">
+          <label for="description" class="form-label">餐廳敘述</label>
+          <textarea class="form-control" id="description" name="description" rows="4"
+            placeholder="紅酒吧，現代創意料理，開胃小館。提供純素選擇，提供無麩質選擇，提供素食選擇..." required></textarea>
+        </div>
+        <div class="col-12 mb-5">
+          <button type="submit" class="btn btn-primary">submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
