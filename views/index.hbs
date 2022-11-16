@@ -47,7 +47,9 @@
               <div class="footer-button">
                 <a class="card-footer-link" href="/restaurant/{{this._id}}/edit">edit</a>
                 <a class="card-footer-link" href="/restaurant/{{this._id}}">Details</a>
-                <button type="button" class="btn btn-danger">Delete</button>
+                <form action="./restaurant/{{this._id}}/delete" method="POST">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
               </div>
             </div>
 

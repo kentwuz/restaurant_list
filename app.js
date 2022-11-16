@@ -46,7 +46,7 @@ app.post('/restaurant', (req, res) => {
   })
 })
 
-//瀏覽特定頁面
+//瀏覽指定頁面
 app.get('/restaurant/:_id', (req, res) => {
   const id = req.params._id
   return RestaurantModel.findById(id)
@@ -55,7 +55,7 @@ app.get('/restaurant/:_id', (req, res) => {
     .catch(error => console.log('error'))
 })
 
-//修改特定頁面
+//修改指定餐廳資料
 app.get('/restaurant/:_id/edit', (req, res) => {
   const id = req.params._id
   return RestaurantModel.findById(id)
@@ -69,6 +69,14 @@ app.post('/restaurant/:_id/edit', (req, res) => {
   const editInfo = req.body
   return RestaurantModel.findByIdAndUpdate(id, editInfo)
     .then(() => res.redirect(`/restaurant/${id}`))
+    .catch(error => console.log('error'))
+})
+
+//刪除指定餐廳資料
+app.post('/restaurant/:_id/delete', (req, res) => {
+  const id = req.params._id
+  return RestaurantModel.findByIdAndDelete(id)
+    .then(() => res.redirect(`/`))
     .catch(error => console.log('error'))
 })
 
