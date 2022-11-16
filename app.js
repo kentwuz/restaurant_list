@@ -46,7 +46,14 @@ app.post('/restaurant', (req, res) => {
   })
 })
 
-
+//瀏覽特定頁面
+app.get('/restaurant/:_id', (req, res) => {
+  const id = req.params._id
+  return RestaurantModel.findById(id)
+    .lean()
+    .then((restaurant) => res.render('detail', { restaurant }))
+    .catch(error => console.log('error'))
+})
 
 app.listen(3000, () => {
   console.log('App is running on https://localhost:3000')
