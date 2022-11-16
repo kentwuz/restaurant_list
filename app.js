@@ -55,6 +55,23 @@ app.get('/restaurant/:_id', (req, res) => {
     .catch(error => console.log('error'))
 })
 
+//修改特定頁面
+app.get('/restaurant/:_id/edit', (req, res) => {
+  const id = req.params._id
+  return RestaurantModel.findById(id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant }))
+    .catch(error => console.log('error'))
+})
+
+app.post('/restaurant/:_id/edit', (req, res) => {
+  const id = req.params._id
+  const editInfo = req.body
+  return RestaurantModel.findByIdAndUpdate(id, editInfo)
+    .then(() => res.redirect(`/restaurant/${id}`))
+    .catch(error => console.log('error'))
+})
+
 app.listen(3000, () => {
   console.log('App is running on https://localhost:3000')
 })
