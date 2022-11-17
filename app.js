@@ -26,6 +26,11 @@ app.use(express.static('public'))//使用靜態檔案
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// 載入 method-override
+const methodOverride = require('method-override')
+// 設定每一筆請求都會透過 methodOverride 進行前置處理
+
+app.use(methodOverride('_method'))
 
 app.get('/', (req, res) => {
   RestaurantModel.find() //取出資料庫中資料
@@ -34,11 +39,11 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 //新增餐廳功能
-app.get('/restaurant/new', (req, res) => {
+app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
-app.post('/restaurant', (req, res) => {
+app.post('/restaurants', (req, res) => {
   const SaveRestaurant = new RestaurantModel(req.body)
   return SaveRestaurant.save((error, savedRestaurant) => {
     if (error) throw error
@@ -47,7 +52,7 @@ app.post('/restaurant', (req, res) => {
 })
 
 //瀏覽指定頁面
-app.get('/restaurant/:_id', (req, res) => {
+app.get('/restaurants/:_id', (req, res) => {
   const id = req.params._id
   return RestaurantModel.findById(id)
     .lean()
@@ -56,7 +61,7 @@ app.get('/restaurant/:_id', (req, res) => {
 })
 
 //修改指定餐廳資料
-app.get('/restaurant/:_id/edit', (req, res) => {
+app.get('/restaurants/:_id/edit', (req, res) => {
   const id = req.params._id
   return RestaurantModel.findById(id)
     .lean()
@@ -64,7 +69,7 @@ app.get('/restaurant/:_id/edit', (req, res) => {
     .catch(error => console.log('error'))
 })
 
-app.post('/restaurant/:_id/edit', (req, res) => {
+app.put('/restaurants/:_id', (req, res) => {
   const id = req.params._id
   const editInfo = req.body
   return RestaurantModel.findByIdAndUpdate(id, editInfo)
@@ -73,7 +78,7 @@ app.post('/restaurant/:_id/edit', (req, res) => {
 })
 
 //刪除指定餐廳資料
-app.post('/restaurant/:_id/delete', (req, res) => {
+app.delete('/restaurant/:_id', (req, res) => {
   const id = req.params._id
   return RestaurantModel.findByIdAndDelete(id)
     .then(() => res.redirect(`/`))

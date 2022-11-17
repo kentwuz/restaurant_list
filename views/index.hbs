@@ -14,7 +14,7 @@
       </form>
     </div>
     <div class="new-restaurant-button">
-      <a class="btn btn-primary" href="./restaurant/new" role="button">新增餐廳</a>
+      <a class="btn btn-primary" href="./restaurants/new" role="button">新增餐廳</a>
     </div>
   </div>
 </div>
@@ -27,7 +27,7 @@
         {{#each restaurants}}
         {{!-- <a href="/restaurants/{{this.id}}" class="text-secondary"> --}}
           <div class="card mb-3 style-cards2">
-            <a href="/restaurant/{{this._id}}" class="text-secondary restaurant-image">
+            <a href="/restaurants/{{this._id}}" class="text-secondary restaurant-image">
               <img class="card-img-top" src={{this.image}} alt={{this.name}}>
             </a>
             <div class="card-body p-3">
@@ -45,9 +45,9 @@
             </div>
             <div class="card-footer text-muted">
               <div class="footer-button">
-                <a class="card-footer-link" href="/restaurant/{{this._id}}/edit">edit</a>
-                <a class="card-footer-link" href="/restaurant/{{this._id}}">Details</a>
-                <form action="./restaurant/{{this._id}}/delete" method="POST">
+                <a class="card-footer-link" href="/restaurants/{{this._id}}/edit">edit</a>
+                <a class="card-footer-link" href="/restaurants/{{this._id}}">Details</a>
+                <form action="./restaurants/{{this._id}}?_method=DELETE" method="POST">
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
               </div>
